@@ -1,0 +1,19 @@
+$facts['os']['family'] == 'RedHat'
+{  
+	package { 'httpd':
+	ensure =>'installed',
+	provider => 'yum',
+  	}
+	file{ 'Message File':
+	ensure => 'file',
+	content => 'Welcome afroz',
+	path => '/var/www/index.html',
+	notify => Service['HTTPD_Service'],
+    	}
+
+	service {'HTTPD_Service':
+  	ensure    => 'running',
+  	enable    => true,
+  	subscribe => File['/var/www/index.html'],
+	}
+}

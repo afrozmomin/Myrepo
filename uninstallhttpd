@@ -1,0 +1,5 @@
+service { 'httpd':
+        ensure => 'stopped',#'stopeed',
+        #name => 'ntpd' #useful where service name differ,
+        enable => true, #false
+}
